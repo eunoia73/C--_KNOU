@@ -34,5 +34,29 @@ int main(){
      * Ron
     */
 
+    /**
+     * Person.h의 print()를 가상함수로 변경 했을 때,
+     * Dudley
+     * Harry goes to Hogwarts  //harry, ron의 타입이 Student라서
+     * Ron goes to Hogwart
+    */
+
+   Person *pPrsn1 = new Person("Dudley");
+   Student *pStdnt1 = new Student("Harry", "Hogwarts");
+   Person *pPrsn2 = pStdnt1;  //upcasting
+   /**
+    * Person 클래스의 포인터인 pPrsn2가 Student 클래스의 객체를 가리키고 있기 때문에 정상적 동작을 하지만,
+    * static_cast 연산자를 이용한 다운캐스팅 -> 부적절한 변환의 위험이 있음
+    * */
+   //Student *pStdnt2 = static_cast<Student*>(pPrsn2);  //downcasting
+
+   /**
+    * dynamic_cast 연산자를 이용한 다운캐스팅 -> 적절하지 않으면 에러가 아니라 nullptr반환
+    * dynamic_cast 사용하려면 클래스 선언문에 가상함수를 포함하고 있어야 함
+   */
+   Student *pStdnt2 = dynamic_cast<Student*>(pPrsn2);  //downcasting
+   if(pStdnt2)
+    cout << pStdnt2->getSchool() << endl;    //Hogwarts
+
     return 0;
 }

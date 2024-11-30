@@ -15,7 +15,13 @@ public :
     //생성자
     Person(const string& n) : name(n) {}
     string getName() const {return name; }
-    void print() const { cout << name; }
+    virtual void print() const { cout << name; }
+    /**
+     * 가상함수를 이용한 동적 연결(virtual)
+     * 객체 포인터를 통해 객체의 멤버함수를 호출할 때, 
+     * 포인터가 가리키는 실제 객체가 무엇인가에 따라 실행 중에 멤버함수를 결정하는 것
+     * 
+    */
 };
 
 #endif  //PERSON_H_INCLUDED
